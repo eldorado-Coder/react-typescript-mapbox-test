@@ -1,7 +1,5 @@
 
-import express, {Request, Response, Router, Express} from 'express';
-import router from './route';
-import DBConnect from "./dbConfigs";
+import express, {Request, Response, Express} from 'express';
 import { RequestHandler } from 'express-serve-static-core';
 
 // call express
@@ -16,10 +14,6 @@ app.use(express.json() as RequestHandler)
 
 const port: number = Number(process.env.PORT) || 8050; // set our port
 
-// connect to database. right now it's just working with mongodb
-// but in near future it will be configured for other databases as well
-DBConnect.dbConnection();
-
 // Send index.html on root request
 app.use(express.static('dist'));
 app.get('/', (req:Request, res:Response) => {
@@ -27,10 +21,6 @@ app.get('/', (req:Request, res:Response) => {
     res.sendFile('/dist/index.html');
 });
 
-// REGISTER ROUTES
-// all of the routes will be prefixed with /api
-const routes: Router[] = Object.values(router);
-app.use('/api', routes);
 
 // START THE SERVER
 // =============================================================================
