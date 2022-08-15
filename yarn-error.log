@@ -1,0 +1,64 @@
+Arguments: 
+  /usr/local/bin/node /opt/yarn-v1.13.0/bin/yarn.js
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+
+Yarn version: 
+  1.13.0
+
+Node version: 
+  10.15.3
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EISDIR: illegal operation on a directory, read
+
+npm manifest: 
+  {
+    "name": "typescript-express-react",
+    "private": true,
+    "description": "My App - A typescript, express, react starter.",
+    "scripts": {
+      "start": "nodemon --watch server --exec babel-node -- server/index.js"
+    },
+    "dependencies": {
+      "@babel/node": "7.2.2",
+      "@babel/plugin-proposal-class-properties": "7.2.3",
+      "@babel/plugin-transform-runtime": "7.2.0",
+      "@babel/preset-env": "7.2.3",
+      "@babel/runtime": "7.2.0",
+      "express": "4.16.4",
+      "nodemon": "1.18.9",
+      "react": "16.7.0",
+      "react-dom": "16.7.0",
+      "react-hot-loader": "4.6.3",
+      "webpack": "4.28.4",
+      "webpack-dev-middleware": "3.5.0",
+      "webpack-hot-middleware": "2.24.3"
+    },
+    "devDependencies": {
+      "@babel/cli": "7.2.3",
+      "@babel/core": "7.2.2",
+      "@babel/preset-env": "7.2.3",
+      "@babel/preset-react": "latest",
+      "@types/react": "^16.8.19",
+      "@types/react-dom": "^16.8.4",
+      "babel-loader": "8.0.4",
+      "nodemon": "1.18.9",
+      "ts-loader": "^6.0.2",
+      "typescript": "^3.5.1",
+      "webpack": "4.28.4",
+      "webpack-cli": "3.2.1",
+      "webpack-dev-middleware": "3.5.0"
+    },
+    "keywords": []
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

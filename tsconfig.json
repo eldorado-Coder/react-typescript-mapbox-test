@@ -1,23 +1,16 @@
 {
-  "extends": "@tsconfig/node12/tsconfig.json",
-  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "target": "es2019",
+    "baseUrl": "./",
+    "target": "es5",
     "jsx": "react",
     "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "allowSyntheticDefaultImports": true, // TODO remove this line
     "sourceMap": true,
-    "outDir": "./dist/",
-    "skipLibCheck": true,
-    "lib": [
-      "DOM"
-    ]
   },
   "exclude": [
-    "./src/server "
-  ],
-  "include": [
-    "./src/client/*",
-    "./src/client/types/**/*.d.ts"
+    "node_modules"
   ]
 }
