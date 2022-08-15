@@ -1,6 +1,6 @@
 import { Coordinator } from "./coordinator";
 
-export interface MyType {
+export default interface MyType {
   success: boolean;
   successMessage: [Coordinator];
   errorMessage: string;
