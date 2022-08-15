@@ -1,16 +1,16 @@
-## LONGITUDE (-180 to + 180)
+### LONGITUDE (-180 to + 180) 
 longitude_from
 longitude_to
 
-## LATITUDE (-90 to +90)
+### LATITUDE (-90 to +90) 
 latitude_from
 latitude_to
 
-## COUNT ( >= 1)
+### COUNT ( >= 1) 
 amount of pins to be shown
 
-## Start
+### Start button
 start to draw map
 
-## Back
+### Back button
 You can revert to dashboard by clicking back button on map
