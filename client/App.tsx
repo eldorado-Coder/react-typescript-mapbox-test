@@ -43,6 +43,7 @@ const App: FunctionComponent = () => {
       setVisibleMap(true);
 
     } else {
+      alert('please check input range');
       return;
     }
   }
