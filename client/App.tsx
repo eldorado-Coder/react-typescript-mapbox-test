@@ -25,18 +25,22 @@ const App: FunctionComponent = () => {
   const [visibleMap, setVisibleMap] = useState<boolean>(false);
 
   const postApi = async () => {
-    if(parseFloat(longFrom) < parseFloat(longTo) && parseFloat(latFrom) < parseFloat(latTo)) {
+    const numLongFrom = parseFloat(longFrom);
+    const numLongTo = parseFloat(longTo);
+    const numLatFrom = parseFloat(latFrom);
+    const numLatTo = parseFloat(latTo);
+
+    if(numLongFrom < numLongTo && numLatFrom < numLatTo) {
       let postData = {
-        longFrom: longFrom,
-        longTo: longTo,
-        latFrom: latFrom,
-        latTo: latTo,
+        longFrom: numLongFrom,
+        longTo: numLongTo,
+        latFrom: numLatFrom,
+        latTo: numLatTo,
         count: count 
       };
       const result = await axios.post('/api/', postData);
       setCoordinates(result.data.successMessage);
       setVisibleMap(true);
-      console.log('coordinate - ', coordinates)
 
     } else {
       return;
