@@ -1,5 +1,10 @@
 import * as React from 'react';
 import {FunctionComponent, useState, useMemo, Fragment} from "react";
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+
 import { hot } from "react-hot-loader/root";
 import axios from 'axios';
 import Map, {
@@ -46,7 +51,7 @@ const App: FunctionComponent = () => {
       setVisibleMap(true);
 
     } else {
-      alert.show('please check input range!')
+      alert.show('Please check input range!')
       return;
     }
   }
@@ -54,9 +59,9 @@ const App: FunctionComponent = () => {
   const pins = useMemo(
     () =>
     coordinates.map((coordinate, index) => (
-      <Marker
-      key={`marker-${index}`}
-      longitude={parseFloat(coordinate.long)}
+        <Marker
+          key={`marker-${index}`}
+          longitude={parseFloat(coordinate.long)}
           latitude={parseFloat(coordinate.lat)}
           anchor="bottom"
           onClick={e => {
@@ -70,40 +75,108 @@ const App: FunctionComponent = () => {
     );
 
   return (
-    <div>
-      <div>
-        <h4>LONGITUDE (-180 to + 180)</h4>
-        <p>longitude_from</p>
-        <input type='number' placeholder='longitude_from' value={longFrom} onChange={(e) => setLongFrom(e.target.value)}></input>
-        <p>longitude_to</p>
-        <input type='number' placeholder='longitude_to' value={longTo} onChange={(e) => setLongTo(e.target.value)}></input>
-      </div>
-      <div>
+    <Container maxWidth="sm">
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <h4>LONGITUDE (-180 to + 180)</h4>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            id="outlined-longitude-from"
+            label="From"
+            type="number"
+            placeholder='longitude_from' 
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={longFrom} 
+            onChange={(e) => setLongFrom(e.target.value)}
+            variant="outlined"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+            <TextField
+              id="outlined-longitude-to"
+              label="To"
+              type="number"
+              placeholder='longitude_to' 
+              InputLabelProps={{
+                shrink: true,
+              }}
+              value={longTo} 
+              onChange={(e) => setLongTo(e.target.value)}
+              variant="outlined"
+            />
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
           <h4>LATITUDE (-90 to +90)</h4>
-          <p>latitude_from</p>
-          <input type='number' placeholder='latitude_from' value={latFrom}  onChange={(e) => setLatFrom(e.target.value)}></input>
-          <p>latitude_to</p>
-          <input type='number' placeholder='latitude_to'  value={latTo}  onChange={(e) => setLatTo(e.target.value)}></input>
-      </div>
-      <div>
-        <h4>count</h4>  
-        <input type='number' placeholder='count' value={count} step="1" min={1} onChange={(e) => setCount(parseFloat(e.target.value))} ></input>
-        <br/>
-      </div>
-      <div style={{marginTop: 20}}>
-        <button type='button' onClick={postApi}>Start</button>
-      </div>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            id="outlined-latitude-from"
+            label="From"
+            type="number"
+            placeholder='latitude_from' 
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={latFrom} 
+            onChange={(e) => setLatFrom(e.target.value)}
+            variant="outlined"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            id="outlined-latitude-to"
+            label="To"
+            type="number"
+            placeholder='latitude_to' 
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={latTo} 
+            onChange={(e) => setLatTo(e.target.value)}
+            variant="outlined"
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <h4>COUNT (1 to ~)</h4>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            id="outlined-count"
+            label="count"
+            type="number"
+            placeholder='count' 
+            value={count}
+            onChange={(e) => setCount(parseFloat(e.target.value))}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          />
+        </Grid>        
+      </Grid>
+        <Grid item xs={12} sm={6}>
+          <div style={{marginTop: 20}}>
+            <Button variant="contained" color="primary" onClick={postApi}>
+              Start
+            </Button>
+          </div>
+        </Grid>
+        <Grid item xs={12} sm={12}>
         {visibleMap && 
         <Fragment>
-            <button style={{
-              position:'absolute',
-              top: 10,
-              right: 10,
-              zIndex: 10,
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }} 
-            onClick={() => setVisibleMap(false)}>back</button>
+            <Button 
+              variant="contained" color="primary"
+              style={{ position:'absolute', top: 10, right: 10, zIndex: 10, borderRadius: '4px', cursor: 'pointer' }} 
+              onClick={() => setVisibleMap(false)}>
+              Back
+            </Button>
           <div style={{
             position:'absolute',
             top:0,
@@ -130,7 +203,8 @@ const App: FunctionComponent = () => {
           </div>
         </Fragment>
       }
-    </div>
+        </Grid>
+    </Container>
   )
 }
 
