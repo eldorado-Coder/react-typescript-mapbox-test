@@ -10,6 +10,7 @@ import Map, {
   GeolocateControl
 } from 'react-map-gl';
 import Pin from './pin';
+import { useAlert } from 'react-alert';
 
 const TOKEN = 'pk.eyJ1IjoibW9raHRhbW9taW4iLCJhIjoiY2w2dXM1aGFhMWRhNDNkbGo3M2tsOThlNSJ9.BiALgWRNJ2dpRkSgxEhX3Q'; 
 
@@ -23,6 +24,8 @@ const App: FunctionComponent = () => {
   const [count, setCount] = useState<number>(1);
   const [coordinates, setCoordinates] = useState([]);
   const [visibleMap, setVisibleMap] = useState<boolean>(false);
+
+  const alert = useAlert();
 
   const postApi = async () => {
     const numLongFrom = parseFloat(longFrom);
@@ -43,7 +46,7 @@ const App: FunctionComponent = () => {
       setVisibleMap(true);
 
     } else {
-      alert('please check input range');
+      alert.show('please check input range!')
       return;
     }
   }
