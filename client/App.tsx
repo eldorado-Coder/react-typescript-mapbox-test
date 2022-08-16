@@ -75,101 +75,103 @@ const App: FunctionComponent = () => {
     );
 
   return (
-    <Container maxWidth="sm">
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <h4>LONGITUDE (-180 to + 180)</h4>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="outlined-longitude-from"
-            label="From"
-            type="number"
-            placeholder='longitude_from' 
-            InputLabelProps={{
-              shrink: true,
-            }}
-            value={longFrom} 
-            onChange={(e) => setLongFrom(e.target.value)}
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
+    <Fragment>
+      <Container maxWidth="sm">
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <h4>LONGITUDE (-180 to + 180)</h4>
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <TextField
-              id="outlined-longitude-to"
-              label="To"
+              id="outlined-longitude-from"
+              label="From"
               type="number"
-              placeholder='longitude_to' 
+              placeholder='longitude_from' 
               InputLabelProps={{
                 shrink: true,
               }}
-              value={longTo} 
-              onChange={(e) => setLongTo(e.target.value)}
+              value={longFrom} 
+              onChange={(e) => setLongFrom(e.target.value)}
               variant="outlined"
             />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+              <TextField
+                id="outlined-longitude-to"
+                label="To"
+                type="number"
+                placeholder='longitude_to' 
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={longTo} 
+                onChange={(e) => setLongTo(e.target.value)}
+                variant="outlined"
+              />
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <h4>LATITUDE (-90 to +90)</h4>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <h4>LATITUDE (-90 to +90)</h4>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              id="outlined-latitude-from"
+              label="From"
+              type="number"
+              placeholder='latitude_from' 
+              InputLabelProps={{
+                shrink: true,
+              }}
+              value={latFrom} 
+              onChange={(e) => setLatFrom(e.target.value)}
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              id="outlined-latitude-to"
+              label="To"
+              type="number"
+              placeholder='latitude_to' 
+              InputLabelProps={{
+                shrink: true,
+              }}
+              value={latTo} 
+              onChange={(e) => setLatTo(e.target.value)}
+              variant="outlined"
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="outlined-latitude-from"
-            label="From"
-            type="number"
-            placeholder='latitude_from' 
-            InputLabelProps={{
-              shrink: true,
-            }}
-            value={latFrom} 
-            onChange={(e) => setLatFrom(e.target.value)}
-            variant="outlined"
-          />
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <h4>COUNT (1 to ~)</h4>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              id="outlined-count"
+              label="count"
+              type="number"
+              placeholder='count' 
+              value={count}
+              onChange={(e) => setCount(parseFloat(e.target.value))}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              variant="outlined"
+            />
+          </Grid>        
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="outlined-latitude-to"
-            label="To"
-            type="number"
-            placeholder='latitude_to' 
-            InputLabelProps={{
-              shrink: true,
-            }}
-            value={latTo} 
-            onChange={(e) => setLatTo(e.target.value)}
-            variant="outlined"
-          />
-        </Grid>
-      </Grid>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <h4>COUNT (1 to ~)</h4>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="outlined-count"
-            label="count"
-            type="number"
-            placeholder='count' 
-            value={count}
-            onChange={(e) => setCount(parseFloat(e.target.value))}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
-        </Grid>        
-      </Grid>
-        <Grid item xs={12} sm={6}>
-          <div style={{marginTop: 20}}>
-            <Button variant="contained" color="primary" onClick={postApi}>
-              Start
-            </Button>
-          </div>
-        </Grid>
-        <Grid item xs={12} sm={12}>
-        {visibleMap && 
+          <Grid item xs={12} sm={6}>
+            <div style={{marginTop: 20}}>
+              <Button variant="contained" color="primary" onClick={postApi}>
+                Start
+              </Button>
+            </div>
+          </Grid>
+          
+      </Container>
+      {visibleMap && 
         <Fragment>
             <Button 
               variant="contained" color="primary"
@@ -179,14 +181,15 @@ const App: FunctionComponent = () => {
             </Button>
           <div style={{
             position:'absolute',
+            left: 0,
             top:0,
             bottom:0,
             width:'100%'
           }}>
             <Map
               initialViewState={{
-                latitude: 4,
-                longitude: 10,
+                latitude: parseFloat(coordinates[0].lat),
+                longitude: parseFloat(coordinates[0].long),
                 zoom: 3.5,
                 bearing: 0,
                 pitch: 0
@@ -203,8 +206,7 @@ const App: FunctionComponent = () => {
           </div>
         </Fragment>
       }
-        </Grid>
-    </Container>
+    </Fragment>
   )
 }
 
